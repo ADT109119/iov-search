@@ -1,6 +1,6 @@
 <template>
 
-    <div class="bg-white p-6 shadow">
+    <div class="bg-white p-6 shadow mt-2">
 
         <div class="text-3xl text-gray-500 font-bold">
             工作時間:
