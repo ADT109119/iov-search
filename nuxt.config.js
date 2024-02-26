@@ -55,8 +55,8 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
-  app: {
-    baseURL: '/iov-search/',
-    buildAssetsDir: '/iov-search/_nuxt/',
+  router:{
+    mode: "hash",
+    base: "./"
   }
 }
