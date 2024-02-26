@@ -56,6 +56,7 @@ export default {
   build: {
   },
   app: {
-    baseURL: '/iov-search/'
+    baseURL: '/iov-search/',
+    buildAssetsDir: '/iov-search/_nuxt/',
   }
 }
