@@ -1,35 +1,37 @@
-import { createStore } from 'vuex'
-
-export default createStore({
-  state: {
+export const state = ()=>({
     nowData: {},
     searchHistory: []
-  },
-  getters: {
+})
+
+export const getters = ()=>({
     getData(state){
-      return state.nowData;
+    return state.nowData;
     },
     getHistory(state){
-      return state.searchHistory;
+        return state.searchHistory;
     }
-  },
-  mutations: {
+})
+
+export const mutations = ()=>({
     setData(state, val){
-      state.nowData = val;
+        state.nowData = val;
     },
     addHistory(state, val){
-      state.searchHistory.push(val);
-      state.searchHistory.shift();
+        state.searchHistory.push(val);
+        state.searchHistory.shift();
     }
-  },
-  actions: {
+})
+
+export const actions = ()=>({
     setData({ commit }, data){
-      commit("setData", data)
+        commit("setData", data)
     },
     addHistory({ commit }, data){
-      commit("addHistory", data)
+        commit("addHistory", data)
     }
-  },
-  modules: {
-  }
+  
+})
+
+export const modules = ()=>({
+  
 })
