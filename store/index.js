@@ -18,7 +18,7 @@ export const mutations = ()=>({
     },
     addHistory(state, val){
         state.searchHistory.push(val);
-        state.searchHistory.shift();
+        state.searchHistory.forEach((item, i)=> i>=10?state.searchHistory.shift():true )
     }
 })
 
