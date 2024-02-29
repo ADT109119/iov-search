@@ -1,18 +1,17 @@
 <template>
 
     <div style="display: grid; grid-template-columns: 1fr;">
-
         <div class="citys">
             <span :class="'cityButton ' + (index==showCounty?'active':'')" v-for="(item, index) in data" @click="showCounty = index">{{ item.CityName }}</span>
 
         </div>
         <div class="text-xl text-gray-500 font-bold mt-2">
-            區域篩選: <span class="areaNum">{{ data[showCounty].AreaList.length }}</span>
+            區域篩選: <span :class="'areaNum ' + (selectedArea[showCounty].length>0?'active':'')"><span v-show="selectedArea[showCounty].length>0">{{ selectedArea[showCounty].length }} / </span>{{ data[showCounty].AreaList.length }}</span>
+            <label style="font-size: 16px;" @click="selectAll">全選</label>
         </div>
-        <div>
-            <label style="font-size: 16px;" id="selectAll"><input type="checkbox" ref="selectAllCheckbox">全選</label><br>
+        <div id="areaSelect">
             <label v-for="(item, index) in data[showCounty].AreaList" style="margin-right: 0.5rem; display: inline-block;">
-                <input type="checkbox" :value="index" @change="changeSelectArea">{{ item.AreaName }}
+                <input type="checkbox" :name="item.AreaName" :value="index" @change="changeSelectArea" :checked="selectedArea[showCounty].includes(index+'')">{{ item.AreaName }}
             </label>
         </div>
 
@@ -23,10 +22,11 @@
 <script setup>
 import data from '@/assets/data/CityCountyData.json'
 import { ref, watch } from "vue";
+import { Store } from 'vuex';
 
 const showCounty = ref(0);
-
 const selectedArea = ref([]);
+// const store = useStore();
 
 for(let i = 0 ; i < data.length ; i++){
     selectedArea.value.push([]);
@@ -42,8 +42,23 @@ function changeSelectArea(e){
 }
 
 watch(selectedArea, (newVal)=>{
-    
+
 })
+
+function selectAll(e){
+    console.log("asdasd")
+    if(selectedArea.value[showCounty.value].length < data[showCounty.value].AreaList.length){
+        document.querySelectorAll("#areaSelect input").forEach((item, i)=>{
+            if(selectedArea.value[showCounty.value].includes(i+''))
+                return;
+            item.click();
+        })
+    }else{
+        document.querySelectorAll("#areaSelect input").forEach((item, i)=>{
+            item.click();
+        })
+    }
+}
 
 </script>
 
@@ -76,6 +91,10 @@ watch(selectedArea, (newVal)=>{
     border-radius: 10000px;
     padding: 0.2rem 0.7rem;
     vertical-align: text-top
+}
+
+.areaNum.active{
+    background-color: rgba(59, 130, 246, 1);
 }
 
 /*
