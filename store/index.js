@@ -5,7 +5,7 @@ export const state = ()=>({
 
 export const getters = ()=>({
     getData(state){
-    return state.nowData;
+        return state.nowData;
     },
     getHistory(state){
         return state.searchHistory;

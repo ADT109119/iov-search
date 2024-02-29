@@ -3,6 +3,15 @@
     <div class="bg-white p-6 shadow mt-2">
 
         <div class="text-3xl text-gray-500 font-bold">
+            縣市篩選:
+        </div>
+        <div class="mt-2" id="cityFilter">
+            <cityFilter></cityFilter>
+        </div>
+
+        <hr>
+
+        <div class="text-3xl text-gray-500 font-bold mt-5">
             工作時間:
         </div>
         <div class="mt-2" id="workTime">
@@ -81,12 +90,12 @@
             </label>
 
             <div class="moneyZone">
-                <span>
-                    <input type="number" class="bg-gray-100 rounded border-2 p-2" placeholder="起始範圍">
+                <span class="bg-gray-100 rounded border-2">
+                    <input type="number" class="bg-transparent p-2" placeholder="起始範圍">
                 </span>
                 <t style="transform: translateY(0.5rem);">~</t>
-                <span>
-                    <input type="number" class="bg-gray-100 rounded border-2 p-2" placeholder="結束範圍">
+                <span class="bg-gray-100 rounded border-2">
+                    <input type="number" class="bg-transparent p-2" placeholder="結束範圍">
                 </span>
             </div>
 
@@ -105,7 +114,7 @@
     /* display: flex; */
     display: grid;
     grid-template-columns: 1fr 1rem 1fr;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .moneyZone span{
@@ -121,7 +130,11 @@
 }
 
 .moneyZone span input{
-    width: 10rem;
+    width: 100%;
+}
+
+div span.text-lg.mr-2{
+    display: inline-block;
 }
 
 </style>
