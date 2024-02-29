@@ -3,16 +3,16 @@ export const state = ()=>({
     searchHistory: []
 })
 
-export const getters = ()=>({
+export const getters = {
     getData(state){
-        return state.nowData;
+    return state.nowData;
     },
     getHistory(state){
         return state.searchHistory;
     }
-})
+}
 
-export const mutations = ()=>({
+export const mutations = {
     setData(state, val){
         state.nowData = val;
     },
@@ -20,9 +20,9 @@ export const mutations = ()=>({
         state.searchHistory.push(val);
         state.searchHistory.forEach((item, i)=> i>=10?state.searchHistory.shift():true )
     }
-})
+}
 
-export const actions = ()=>({
+export const actions = {
     setData({ commit }, data){
         commit("setData", data)
     },
@@ -30,8 +30,8 @@ export const actions = ()=>({
         commit("addHistory", data)
     }
   
-})
+}
 
-export const modules = ()=>({
+export const modules = {
   
-})
+}

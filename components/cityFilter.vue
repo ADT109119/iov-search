@@ -21,12 +21,17 @@
 
 <script setup>
 import data from '@/assets/data/CityCountyData.json'
-import { ref, watch } from "vue";
-import { Store } from 'vuex';
+import { onMounted, ref, watch } from "vue";
+// import { useStore } from '@nuxtjs/composition-api'
+// import { useStore } from 'vuex'
 
 const showCounty = ref(0);
 const selectedArea = ref([]);
-// const store = useStore();
+// const store = useNuxtApp().nuxt2Context.store
+
+onMounted(()=>{
+    // console.log(store.getter.getData)
+})
 
 for(let i = 0 ; i < data.length ; i++){
     selectedArea.value.push([]);
