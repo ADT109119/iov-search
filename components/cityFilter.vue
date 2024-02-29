@@ -42,7 +42,7 @@ function changeSelectArea(e){
 }
 
 watch(selectedArea, (newVal)=>{
-
+    
 })
 
 </script>
