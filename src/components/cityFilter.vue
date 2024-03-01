@@ -56,7 +56,7 @@ watch(selectedArea.value, (newVal)=>{
 
 watch(store.state.nowData, (newVal)=>{
     selectedArea.value = newVal.areas;
-    console.log(newVal.areas)
+    // console.log(newVal.areas)
 })
 
 function selectAll(e){
