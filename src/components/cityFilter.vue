@@ -2,7 +2,7 @@
 
     <div style="display: grid; grid-template-columns: 1fr;">
         <div class="citys">
-            <span :class="'cityButton ' + (index==showCounty?'active':'')" v-for="(item, index) in data" @click="showCounty = index">{{ item.CityName }}</span>
+            <span :class="'cityButton ' + (index==showCounty?'active':'')" v-for="(item, index) in data" @click="showCounty = index" :key="index">{{ item.CityName }}</span>
 
         </div>
         <div class="text-xl text-gray-500 font-bold mt-2">
@@ -10,7 +10,7 @@
             <label style="font-size: 16px;" @click="selectAll">全選</label>
         </div>
         <div id="areaSelect">
-            <label v-for="(item, index) in data[showCounty].AreaList" style="margin-right: 0.5rem; display: inline-block;">
+            <label v-for="(item, index) in data[showCounty].AreaList" style="margin-right: 0.5rem; display: inline-block;" :key="index">
                 <input type="checkbox" :name="item.AreaName" :value="index" @change="changeSelectArea" :checked="selectedArea[showCounty].includes(index+'')">{{ item.AreaName }}
             </label>
         </div>
@@ -20,24 +20,23 @@
 </template>
 
 <script setup>
-import data from '@/assets/data/CityCountyData.json'
+import data from '@/assets/data/CityCountyData.json';
 import { onMounted, ref, watch } from "vue";
-// import { useStore } from '@nuxtjs/composition-api'
-// import { useStore } from 'vuex'
+import { useStore } from 'vuex'
 
 const showCounty = ref(0);
 const selectedArea = ref([]);
-// const store = useNuxtApp().nuxt2Context.store
+const store = useStore();
 
 onMounted(()=>{
-    // console.log(store.getter.getData)
+    // console.log(data)
+    console.log(store.getters.getData)
 })
 
 for(let i = 0 ; i < data.length ; i++){
     selectedArea.value.push([]);
 }
 
-const selectAllCheckbox = ref();
 
 function changeSelectArea(e){
     if(e.target.checked)
@@ -46,12 +45,15 @@ function changeSelectArea(e){
         selectedArea.value[showCounty.value].splice(selectedArea.value[showCounty.value].indexOf(e.target.value), 1);
 }
 
-watch(selectedArea, (newVal)=>{
-
+watch(selectedArea.value, (newVal)=>{
+    let nowData = store.getters.getData;
+    nowData.areas = newVal
+    store.dispatch('setData', nowData)
+    console.log(store.getters.getData)
 })
 
 function selectAll(e){
-    console.log("asdasd")
+    console.log(e.target)
     if(selectedArea.value[showCounty.value].length < data[showCounty.value].AreaList.length){
         document.querySelectorAll("#areaSelect input").forEach((item, i)=>{
             if(selectedArea.value[showCounty.value].includes(i+''))
@@ -59,7 +61,7 @@ function selectAll(e){
             item.click();
         })
     }else{
-        document.querySelectorAll("#areaSelect input").forEach((item, i)=>{
+        document.querySelectorAll("#areaSelect input").forEach((item)=>{
             item.click();
         })
     }

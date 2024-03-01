@@ -39,7 +39,8 @@
 
 <script setup>
 import { onMounted } from 'vue';
-
+import detailSearch from './detailSearch.vue';
+import recentSearch from './recentSearch.vue';
 
 onMounted(()=>{
 })

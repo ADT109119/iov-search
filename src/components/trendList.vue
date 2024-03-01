@@ -2,7 +2,7 @@
     <div class="pl-2.5 pt-1 flex flex-nowrap" style="max-width: calc(100vw - 1.5rem);">
         <span class="text-gray-600 font-semibold align-middle">熱門搜尋: </span>
         <div class="trendWord flex-1">
-            <button class="ml-2 mr-2 text-gray-600 border-b-2 border-gray-600" v-for="item in trendData" @click="trendClick(item)">{{ item }}</button>
+            <button class="ml-2 mr-2 text-gray-600 border-b-2 border-gray-600" v-for="(item, index) in trendData" @click="trendClick(item)" :key="index">{{ item }}</button>
         </div>
     </div>
 </template>

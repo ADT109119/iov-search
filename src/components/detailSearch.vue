@@ -105,6 +105,11 @@
 
 </template>
 
+<script setup>
+import cityFilter from './cityFilter.vue';
+
+</script>
+
 <style>
 #workMoney:has(input[value="4"]:checked) .moneyZone{
     display: none;
