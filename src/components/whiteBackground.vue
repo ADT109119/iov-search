@@ -5,7 +5,15 @@
                 {{ props.history.title }}
             </h2>
             <p class="mt-3 text-gray-600">
-                地區: 新北市-蘆洲區、新北市-新莊區<br>
+                <span  class="areaDisplay">地區:
+                        <span v-for="(item, index) in props.history.areas" v-show="item!=[]" :key="index">
+                        <span v-for="(item2, index2) in item" :key="index2">
+                            {{ index==0&&index2==0?'':'、' }}
+                            {{ data[index].CityName }}-{{ data[index].AreaList[item2].AreaName }}
+                        </span>
+                    </span>
+                </span>
+                <br>
                 上班時間: 早班<br>
                 工作性質: 全職<br>
                 工作待遇: 時新 185~200
@@ -19,9 +27,21 @@
 
 <script setup>
 import {defineProps} from 'vue';
+import data from '@/assets/data/CityCountyData.json';
+
 const props = defineProps({
     history:{
         type: Object
     }
 })
 </script>
+
+<style>
+.areaDisplay{
+    text-overflow: ellipsis;
+    max-lines: 1;
+    overflow:hidden;
+    white-space: nowrap;
+    width: 80%;
+}
+</style>

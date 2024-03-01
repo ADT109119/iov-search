@@ -24,7 +24,7 @@ export default createStore({
             state.nowData = val;
         },
         addHistory(state){
-            state.searchHistory.unshift(state.nowData);
+            state.searchHistory.unshift(JSON.parse(JSON.stringify(state.nowData)));
             state.nowData = {
                 title:'',
                 areas:[],
