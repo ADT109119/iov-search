@@ -2,7 +2,10 @@
 
     <div style="display: grid; grid-template-columns: 1fr;">
         <div class="citys">
-            <span :class="'cityButton ' + (index==showCounty?'active':'')" v-for="(item, index) in data" @click="showCounty = index" :key="index">{{ item.CityName }}</span>
+            <span :class="'cityButton ' + (index==showCounty?'active':'')" v-for="(item, index) in data" @click="showCounty = index" :key="index">
+                <span :class="'areaNum ' + (selectedArea[index].length>0?'active':'')"><span v-show="selectedArea[index].length>0">{{ selectedArea[index].length }} / </span>{{ data[index].AreaList.length }}</span>
+                {{ item.CityName }}
+            </span>
 
         </div>
         <div class="text-xl text-gray-500 font-bold mt-2">
@@ -49,7 +52,11 @@ watch(selectedArea.value, (newVal)=>{
     let nowData = store.getters.getData;
     nowData.areas = newVal
     store.dispatch('setData', nowData)
-    console.log(store.getters.getData)
+})
+
+watch(store.state.nowData, (newVal)=>{
+    selectedArea.value = newVal.areas;
+    console.log(newVal.areas)
 })
 
 function selectAll(e){
