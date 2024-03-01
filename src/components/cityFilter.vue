@@ -10,7 +10,7 @@
         </div>
         <div class="text-xl text-gray-500 font-bold mt-2">
             區域篩選: <span :class="'areaNum ' + (selectedArea[showCounty].length>0?'active':'')"><span v-show="selectedArea[showCounty].length>0">{{ selectedArea[showCounty].length }} / </span>{{ data[showCounty].AreaList.length }}</span>
-            <label style="font-size: 16px;" @click="selectAll">全選</label>
+            <label style="font-size: 16px; cursor: pointer;" @click="selectAll">全選</label>
         </div>
         <div id="areaSelect">
             <label v-for="(item, index) in data[showCounty].AreaList" style="margin-right: 0.5rem; display: inline-block;" :key="index">
@@ -91,6 +91,7 @@ function selectAll(e){
     border: 2px gray solid;
     text-wrap: nowrap;
     transition: .1s;
+    cursor: pointer;
 }
 
 .citys span.cityButton.active{
