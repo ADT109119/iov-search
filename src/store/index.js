@@ -4,12 +4,12 @@ export default createStore({
     state: {
         nowData: {
             title:'',
-            areas:[],
+            areas:[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
             times:[],
             features:[],
             pay:[]
         },
-        searchHistory: []
+        searchHistory: localStorage.getItem('searchHistory')!=null?JSON.parse(localStorage.getItem('searchHistory')):[]
     },
     getters: {
         getData(state){
@@ -25,6 +25,7 @@ export default createStore({
         },
         addHistory(state){
             state.searchHistory.unshift(JSON.parse(JSON.stringify(state.nowData)));
+            localStorage.setItem('searchHistory', JSON.stringify(state.searchHistory))
             state.nowData = {
                 title:'',
                 areas:[],
