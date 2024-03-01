@@ -3,7 +3,7 @@
     <div style="display: grid; grid-template-columns: 1fr;">
         <div class="citys">
             <span :class="'cityButton ' + (index==showCounty?'active':'')" v-for="(item, index) in data" @click="showCounty = index" :key="index">
-                <span :class="'areaNum ' + (selectedArea[index].length>0?'active':'')"><span v-show="selectedArea[index].length>0">{{ selectedArea[index].length }} / </span>{{ data[index].AreaList.length }}</span>
+                <span v-show="selectedArea[index].length>0" :class="'areaNum ' + (selectedArea[index].length>0?'active':'')"><span v-show="selectedArea[index].length>0">{{ selectedArea[index].length }}</span></span>
                 {{ item.CityName }}
             </span>
 
