@@ -14,12 +14,12 @@
                     </span>
                 </span>
                 <br>
-                上班時間: {{ props.history.workTime }}<br>
-                工作性質: {{ props.history.workFeature }}<br>
+                上班時間: <span v-for="(item, index) in props.history.workTime" :key="index">{{ (index!=0?'、':'') + workTimeData[item-1] }}</span><br>
+                工作性質: <span v-for="(item, index) in props.history.workFeature" :key="index">{{ (index!=0?'、':'') + workFeatureData[item-1] }}</span><br>
                 工作待遇: 時新 185~200
             </p>
             <p class="mt-4 pt-4 text-gray-800 border-t border-t-2 text-right">
-                <a href="#" class="text-blue-600">套用設定 ></a>
+                <a href="#" class="text-blue-600" @click="loadHistory()">套用設定 ></a>
             </p>
         </div>
     </div>
@@ -28,12 +28,24 @@
 <script setup>
 import {defineProps} from 'vue';
 import data from '@/assets/data/CityCountyData.json';
+import workTimeData from '@/assets/data/workTime.json'
+import workFeatureData from '@/assets/data/workFeature.json'
+import { useStore } from 'vuex';
+// import workMoneyData from '@/assets/data/workMoney.json'
+
 
 const props = defineProps({
     history:{
         type: Object
     }
 })
+
+const store = useStore();
+
+function loadHistory(){
+    store.dispatch('setData', props.history);
+}
+
 </script>
 
 <style>

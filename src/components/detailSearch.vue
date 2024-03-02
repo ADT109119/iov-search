@@ -15,23 +15,8 @@
             工作時間:
         </div>
         <div class="mt-2" id="workTime">
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="1" v-model="workTime"> 日班
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="2" v-model="workTime"> 中班
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="3" v-model="workTime"> 晚班
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="4" v-model="workTime"> 大夜班
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="5" v-model="workTime"> 假日班
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="6" v-model="workTime"> 其他時段
+            <label class="text-lg mr-2" v-for="(item, index) in workTimeData" :key="index">
+                <input type="checkbox" :value="index+1" v-model="workTime">{{ item }}
             </label>
             <div>
                 <input type="time" v-model="workTimeDetail[0]">
@@ -46,28 +31,9 @@
             工作性質:
         </div>
         <div class="mt-2" id="workFeature">
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="1" v-model="workFeature"> 全職
+            <label class="text-lg mr-2" v-for="(item, index) in workFeatureData" :key="index">
+                <input type="checkbox" :value="index+1" v-model="workFeature">{{ item }}
             </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="2" v-model="workFeature"> 短期兼職
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="3" v-model="workFeature"> 長期兼職
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="4" v-model="workFeature"> 實習
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="5" v-model="workFeature"> 寒暑假工讀
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="6" v-model="workFeature"> 負委託
-            </label>
-            <label class="text-lg mr-2">
-                <input type="checkbox" value="7" v-model="workFeature"> 遠端工作
-            </label>
-
         </div>
 
         
@@ -75,17 +41,8 @@
             工作待遇:
         </div>
         <div class="mt-2" id="workMoney">
-            <label class="text-lg mr-2">
-                <input type="radio" value="1" name="workMoney" checked> 時薪
-            </label>
-            <label class="text-lg mr-2">
-                <input type="radio" value="2" name="workMoney"> 日新
-            </label>
-            <label class="text-lg mr-2">
-                <input type="radio" value="3" name="workMoney"> 月薪
-            </label>
-            <label class="text-lg mr-2">
-                <input type="radio" value="4" name="workMoney"> 面議
+            <label class="text-lg mr-2" v-for="(item, index) in workMoneyData" :key="index">
+                <input type="radio" :value="index+1" name="workMoney" :checked="index==0" v-model="workMoney">{{ item }}
             </label>
 
             <div class="moneyZone">
@@ -109,6 +66,10 @@ import { ref, watch } from 'vue';
 import cityFilter from './cityFilter.vue';
 import { useStore } from 'vuex';
 
+import workTimeData from '@/assets/data/workTime.json'
+import workFeatureData from '@/assets/data/workFeature.json'
+import workMoneyData from '@/assets/data/workMoney.json'
+
 const workTime = ref([]);
 const workTimeDetail = ref([]);
 const workFeature = ref([]);
@@ -118,7 +79,7 @@ const moneyZone = ref([]);
 const store = useStore();
 
 //更新工作時間資料
-watch(workTime.value, (newVal)=>{
+watch(workTime, (newVal)=>{
     let nowData = store.getters.getData;
     nowData.workTime = newVal
     store.dispatch('setData', nowData)
@@ -132,14 +93,14 @@ watch(workTimeDetail.value, (newVal)=>{
 })
 
 //更新工作性質資料
-watch(workFeature.value, (newVal)=>{
+watch(workFeature, (newVal)=>{
     let nowData = store.getters.getData;
     nowData.workFeature = newVal
     store.dispatch('setData', nowData)
 })
 
 //更新工作待遇資料
-watch(workMoney.value, (newVal)=>{
+watch(workMoney, (newVal)=>{
     let nowData = store.getters.getData;
     nowData.features = newVal
     store.dispatch('setData', nowData)
@@ -156,7 +117,6 @@ watch(store.state.nowData, (newVal)=>{
     workTime.value = newVal.workTime;
     workTimeDetail.value = newVal.workTimeDetail;
     workFeature.value = newVal.workFeature;
-    workTime.value = newVal.workMoney;
     moneyZone.value = newVal.moneyZone;
 })
 
