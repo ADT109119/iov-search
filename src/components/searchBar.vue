@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import trendList from './trendList.vue';
 import { useStore } from 'vuex';
 
@@ -34,5 +34,9 @@ function submit(){
     store.dispatch('setData', store.getters.getData)
     store.dispatch('addHistory')
 }
+
+watch(store.state.nowData, (newVal)=>{
+    inputText.value = newVal.title;
+})
 
 </script>

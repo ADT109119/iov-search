@@ -14,8 +14,8 @@
                     </span>
                 </span>
                 <br>
-                上班時間: 早班<br>
-                工作性質: 全職<br>
+                上班時間: {{ props.history.workTime }}<br>
+                工作性質: {{ props.history.workFeature }}<br>
                 工作待遇: 時新 185~200
             </p>
             <p class="mt-4 pt-4 text-gray-800 border-t border-t-2 text-right">

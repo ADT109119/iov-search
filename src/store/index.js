@@ -5,9 +5,11 @@ export default createStore({
         nowData: {
             title:'',
             areas:[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],
-            times:[],
-            features:[],
-            pay:[]
+            workTime:[],
+            workTimeDetail:[],
+            workFeature:[],
+            workMoney:[],
+            moneyZone:[]
         },
         searchHistory: localStorage.getItem('searchHistory')!=null?JSON.parse(localStorage.getItem('searchHistory')):[]
     },
@@ -26,13 +28,6 @@ export default createStore({
         addHistory(state){
             state.searchHistory.unshift(JSON.parse(JSON.stringify(state.nowData)));
             localStorage.setItem('searchHistory', JSON.stringify(state.searchHistory))
-            state.nowData = {
-                title:'',
-                areas:[],
-                times:[],
-                features:[],
-                pay:[]
-            };
 
             state.searchHistory.forEach((item, i)=> i>=10?state.searchHistory.pop():true )
         }

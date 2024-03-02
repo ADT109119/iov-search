@@ -16,27 +16,27 @@
         </div>
         <div class="mt-2" id="workTime">
             <label class="text-lg mr-2">
-                <input type="checkbox" value="1"> 日班
+                <input type="checkbox" value="1" v-model="workTime"> 日班
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="2"> 中班
+                <input type="checkbox" value="2" v-model="workTime"> 中班
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="3"> 晚班
+                <input type="checkbox" value="3" v-model="workTime"> 晚班
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="4"> 大夜班
+                <input type="checkbox" value="4" v-model="workTime"> 大夜班
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="5"> 假日班
+                <input type="checkbox" value="5" v-model="workTime"> 假日班
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="6"> 其他時段
+                <input type="checkbox" value="6" v-model="workTime"> 其他時段
             </label>
             <div>
-                <input type="time">
+                <input type="time" v-model="workTimeDetail[0]">
                 ~
-                <input type="time">
+                <input type="time" v-model="workTimeDetail[1]">
             </div>
 
         </div>
@@ -47,29 +47,28 @@
         </div>
         <div class="mt-2" id="workFeature">
             <label class="text-lg mr-2">
-                <input type="checkbox" value="1"> 全職
+                <input type="checkbox" value="1" v-model="workFeature"> 全職
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="2"> 短期兼職
+                <input type="checkbox" value="2" v-model="workFeature"> 短期兼職
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="3"> 長期兼職
+                <input type="checkbox" value="3" v-model="workFeature"> 長期兼職
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="4"> 實習
+                <input type="checkbox" value="4" v-model="workFeature"> 實習
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="5"> 寒暑假工讀
+                <input type="checkbox" value="5" v-model="workFeature"> 寒暑假工讀
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="6"> 負委託
+                <input type="checkbox" value="6" v-model="workFeature"> 負委託
             </label>
             <label class="text-lg mr-2">
-                <input type="checkbox" value="7"> 遠端工作
+                <input type="checkbox" value="7" v-model="workFeature"> 遠端工作
             </label>
 
         </div>
-
 
         
         <div class="text-3xl text-gray-500 font-bold mt-5">
@@ -91,11 +90,11 @@
 
             <div class="moneyZone">
                 <span class="bg-gray-100 rounded border-2">
-                    <input type="number" class="bg-transparent p-2" placeholder="起始範圍">
+                    <input type="number" class="bg-transparent p-2" placeholder="起始範圍" v-model="moneyZone[0]">
                 </span>
                 <t style="transform: translateY(0.5rem);">~</t>
                 <span class="bg-gray-100 rounded border-2">
-                    <input type="number" class="bg-transparent p-2" placeholder="結束範圍">
+                    <input type="number" class="bg-transparent p-2" placeholder="結束範圍" v-model="moneyZone[1]">
                 </span>
             </div>
 
@@ -106,7 +105,60 @@
 </template>
 
 <script setup>
+import { ref, watch } from 'vue';
 import cityFilter from './cityFilter.vue';
+import { useStore } from 'vuex';
+
+const workTime = ref([]);
+const workTimeDetail = ref([]);
+const workFeature = ref([]);
+const workMoney = ref([]);
+const moneyZone = ref([]);
+
+const store = useStore();
+
+//更新工作時間資料
+watch(workTime.value, (newVal)=>{
+    let nowData = store.getters.getData;
+    nowData.workTime = newVal
+    store.dispatch('setData', nowData)
+})
+
+//更新詳細工作時間資料
+watch(workTimeDetail.value, (newVal)=>{
+    let nowData = store.getters.getData;
+    nowData.workTimeDetail = newVal
+    store.dispatch('setData', nowData)
+})
+
+//更新工作性質資料
+watch(workFeature.value, (newVal)=>{
+    let nowData = store.getters.getData;
+    nowData.workFeature = newVal
+    store.dispatch('setData', nowData)
+})
+
+//更新工作待遇資料
+watch(workMoney.value, (newVal)=>{
+    let nowData = store.getters.getData;
+    nowData.features = newVal
+    store.dispatch('setData', nowData)
+})
+
+//更新薪資範圍資料
+watch(moneyZone.value, (newVal)=>{
+    let nowData = store.getters.getData;
+    nowData.moneyZone = newVal
+    store.dispatch('setData', nowData)
+})
+
+watch(store.state.nowData, (newVal)=>{
+    workTime.value = newVal.workTime;
+    workTimeDetail.value = newVal.workTimeDetail;
+    workFeature.value = newVal.workFeature;
+    workTime.value = newVal.workMoney;
+    moneyZone.value = newVal.moneyZone;
+})
 
 </script>
 
