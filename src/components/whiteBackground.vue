@@ -16,7 +16,7 @@
                 <br>
                 上班時間: <span v-for="(item, index) in props.history.workTime" :key="index">{{ (index!=0?'、':'') + workTimeData[item-1] }}</span><br>
                 工作性質: <span v-for="(item, index) in props.history.workFeature" :key="index">{{ (index!=0?'、':'') + workFeatureData[item-1] }}</span><br>
-                工作待遇: 時新 185~200
+                工作待遇: <span>{{ workMoneyData[props.history.workMoney-1] }} {{ history.moneyZone[0] }}~{{ history.moneyZone[1] }}</span><br>
             </p>
             <p class="mt-4 pt-4 text-gray-800 border-t border-t-2 text-right">
                 <a href="#" class="text-blue-600" @click="loadSearchHistory">套用設定 ></a>
@@ -30,8 +30,8 @@ import {defineProps} from 'vue';
 import data from '@/assets/data/CityCountyData.json';
 import workTimeData from '@/assets/data/workTime.json'
 import workFeatureData from '@/assets/data/workFeature.json'
+import workMoneyData from '@/assets/data/workMoney.json'
 import { useStore } from 'vuex';
-// import workMoneyData from '@/assets/data/workMoney.json'
 
 
 const props = defineProps({
@@ -44,6 +44,8 @@ const store = useStore();
 
 function loadSearchHistory(){
     store.dispatch('setData', props.history);
+    const ev = new CustomEvent('loadSearchHistory', {detail:{history: props.history}});
+    document.dispatchEvent(ev);
 }
 
 </script>

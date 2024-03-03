@@ -27,6 +27,10 @@ onMounted(()=>{
         console.log(e.detail.text);
         inputText.value = e.detail.text;
     })
+    
+    document.addEventListener('loadSearchHistory', (e)=>{
+        inputText.value = e.detail.history.title;
+    })
 })
 
 function submit(){

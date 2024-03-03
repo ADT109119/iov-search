@@ -33,7 +33,11 @@ const store = useStore();
 
 onMounted(()=>{
     // console.log(data)
-    console.log(store.getters.getData)
+    // console.log(store.getters.getData)
+    document.addEventListener('loadSearchHistory', (e)=>{
+        let newVal = e.detail.history;
+        selectedArea.value = newVal.areas;
+    })
 })
 
 for(let i = 0 ; i < data.length ; i++){

@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import cityFilter from './cityFilter.vue';
 import { useStore } from 'vuex';
 
@@ -73,7 +73,7 @@ import workMoneyData from '@/assets/data/workMoney.json'
 const workTime = ref([]);
 const workTimeDetail = ref([]);
 const workFeature = ref([]);
-const workMoney = ref([]);
+const workMoney = ref(1);
 const moneyZone = ref([]);
 
 const store = useStore();
@@ -118,6 +118,16 @@ watch(store.state.nowData, (newVal)=>{
     workTimeDetail.value = newVal.workTimeDetail;
     workFeature.value = newVal.workFeature;
     moneyZone.value = newVal.moneyZone;
+})
+
+onMounted(()=>{
+    document.addEventListener('loadSearchHistory', (e)=>{
+        let newVal = e.detail.history;
+        workTime.value = newVal.workTime;
+        workTimeDetail.value = newVal.workTimeDetail;
+        workFeature.value = newVal.workFeature;
+        moneyZone.value = newVal.moneyZone;
+    })
 })
 
 </script>

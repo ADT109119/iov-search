@@ -8,7 +8,7 @@ export default createStore({
             workTime:[],
             workTimeDetail:[],
             workFeature:[],
-            workMoney:[],
+            workMoney: 1,
             moneyZone:[]
         },
         searchHistory: localStorage.getItem('searchHistory')!=null?JSON.parse(localStorage.getItem('searchHistory')):[]
