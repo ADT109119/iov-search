@@ -19,7 +19,7 @@
                 工作待遇: 時新 185~200
             </p>
             <p class="mt-4 pt-4 text-gray-800 border-t border-t-2 text-right">
-                <a href="#" class="text-blue-600" @click="loadHistory()">套用設定 ></a>
+                <a href="#" class="text-blue-600" @click="loadSearchHistory">套用設定 ></a>
             </p>
         </div>
     </div>
@@ -42,7 +42,7 @@ const props = defineProps({
 
 const store = useStore();
 
-function loadHistory(){
+function loadSearchHistory(){
     store.dispatch('setData', props.history);
 }
 
