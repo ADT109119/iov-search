@@ -10,7 +10,7 @@
           <a
             class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg cursor-pointer text-slate-700 bg-inherit"
           >
-            <span class="ml-1 text-gray-600 text-xl font-bold border-b-4 border-gray-300 buttonText">最近搜尋</span>
+            <span class="ml-1 text-gray-600 text-xl font-bold border-b-4 border-gray-300 buttonText text-blue-500">最近搜尋</span>
           </a>
         </li>
         <li class="z-30 flex-auto text-center" @click="changeTab(1)">
@@ -48,9 +48,15 @@ onMounted(()=>{
 function changeTab(tab){
     document.querySelectorAll('.buttonText').forEach((item, i) => {
         if(i != tab)
-            item.classList.remove('border-b-4')
+            item.classList.remove('border-b-4');
         else
             item.classList.add('border-b-4')
+
+        if(i != tab)
+            item.classList.remove('text-blue-500');
+        else
+            item.classList.add('text-blue-500')
+
     })
 
     document.querySelectorAll('.tabContent').forEach((item, i) => {
