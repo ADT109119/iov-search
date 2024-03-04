@@ -18,11 +18,12 @@
 import { onMounted, ref, watch } from 'vue';
 import trendList from './trendList.vue';
 import { useStore } from 'vuex';
+import liff from "@line/liff";
 
 const inputText = ref('');
 const store = useStore();
 
-onMounted(()=>{
+onMounted(async ()=>{
     document.addEventListener("trendClick", (e)=>{
         console.log(e.detail.text);
         inputText.value = e.detail.text;
@@ -31,6 +32,18 @@ onMounted(()=>{
     document.addEventListener('loadSearchHistory', (e)=>{
         inputText.value = e.detail.history.title;
     })
+
+    liff
+    .init({
+        liffId: "2000149257-ZgKW4k5X", // 從LIFF頁面中拿到的ID
+    })
+    .then(() => { 
+    //做你想要做的
+    })
+    .catch((err) => {
+        console.log(err.code, err.message);
+    });
+
 })
 
 function submit(){
