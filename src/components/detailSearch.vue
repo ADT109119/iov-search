@@ -42,7 +42,7 @@
         </div>
         <div class="mt-2" id="workMoney">
             <label class="text-lg mr-2" v-for="(item, index) in workMoneyData" :key="index">
-                <input type="radio" :value="index+1" name="workMoney" :checked="index==0" v-model="workMoney">{{ item }}
+                <input type="radio" :value="index+1" name="workMoney" v-model="workMoney">{{ item }}
             </label>
 
             <div class="moneyZone">
@@ -102,7 +102,7 @@ watch(workFeature, (newVal)=>{
 //更新工作待遇資料
 watch(workMoney, (newVal)=>{
     let nowData = store.getters.getData;
-    nowData.features = newVal
+    nowData.workMoney = newVal
     store.dispatch('setData', nowData)
 })
 
