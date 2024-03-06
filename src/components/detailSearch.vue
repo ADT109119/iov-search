@@ -126,6 +126,7 @@ onMounted(()=>{
         workTime.value = newVal.workTime;
         workTimeDetail.value = newVal.workTimeDetail;
         workFeature.value = newVal.workFeature;
+        workMoney.value = newVal.workMoney;
         moneyZone.value = newVal.moneyZone;
     })
 })
