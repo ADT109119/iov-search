@@ -51,7 +51,7 @@ onMounted(async ()=>{
             }
 
             // let message = "IOV:" + temp.workTime.join('%2C') + "\t"+ temp.workTimeDetail[0] + "\t"  + document.querySelector("#keyword").value + "\t" + temp.areas.join(",") + "\t" + temp.title;
-            let message = `IOV:${temp.workTime.join('%2C')}\t${temp.workTimeDetail[0]}\t${temp.workTimeDetail[1]}\t${temp.workFeature.join('%2C')}\t${temp.workMoney.join('%2C')}\t${temp.moneyZone[0]}\t${temp.moneyZone[1]}\t${areas.join('%2c')}`
+            let message = `IOV:${temp.workTime.join('%2C')}\t${temp.workTimeDetail[0]}\t${temp.workTimeDetail[1]}\t${temp.workFeature.join('%2C')}\t${temp.workMoney}\t${temp.moneyZone[0]}\t${temp.moneyZone[1]}\t${areas.join('%2c')}`
             console.log(message)
             liff.sendMessages([
                 {
