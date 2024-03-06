@@ -19,6 +19,7 @@ import { onMounted, ref, watch } from 'vue';
 import trendList from './trendList.vue';
 import { useStore } from 'vuex';
 import liff from "@line/liff";
+import data from '@/assets/data/CityCountyData.json';
 
 const inputText = ref('');
 const store = useStore();
@@ -42,7 +43,15 @@ onMounted(async ()=>{
         document.querySelector("#searchButton").addEventListener('click', ()=>{
             let temp = store.getters.getData;
 
-            let message = "IOV:" + temp.titles + "\t" + temp.workTime.join(',') + "\t"+ temp.workTimeDetail.join(',') + "\t"  + document.querySelector("#keyword").value + "\t" + temp.areas.join(",");
+            let areas = [];
+            for(let i = 0 ; i < temp.areas.length ; i++){
+                for(let j = 0 ; j < temp.areas[i].length ; j++){
+                    areas.push(`${data[i].CityName}-${data[i].AreaList[j].AreaName}`);
+                }
+            }
+
+            // let message = "IOV:" + temp.workTime.join('%2C') + "\t"+ temp.workTimeDetail[0] + "\t"  + document.querySelector("#keyword").value + "\t" + temp.areas.join(",") + "\t" + temp.title;
+            let message = `IOV:${temp.workTime.join('%2C')}\t${temp.workTimeDetail[0]}\t${temp.workTimeDetail[1]}\t${temp.workFeature.join('%2C')}\t${temp.workMoney.join('%2C')}\t${temp.moneyZone[0]}\t${temp.moneyZone[1]}\t${areas.join('%2c')}`
             console.log(message)
             liff.sendMessages([
                 {
@@ -50,7 +59,7 @@ onMounted(async ()=>{
                     text: message
                 }
 
-            ]).then(res => liff.closeWindow())
+            ]).then(res => {console.log(res);liff.closeWindow()})
                 .catch(error => console.log(error));
         })
     })

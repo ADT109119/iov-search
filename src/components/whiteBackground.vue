@@ -6,7 +6,7 @@
             </h2>
             <p class="mt-3 text-gray-600">
                 <span  class="areaDisplay">地區:
-                        <span v-for="(item, index) in props.history.areas" v-show="item!=[]" :key="index">
+                    <span v-for="(item, index) in props.history.areas" v-show="item!=[]" :key="index">
                         <span v-for="(item2, index2) in item" :key="index2">
                             {{ index==0&&index2==0?'':'、' }}
                             {{ data[index].CityName }}-{{ data[index].AreaList[item2].AreaName }}
