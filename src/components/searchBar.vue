@@ -35,7 +35,7 @@ onMounted(async ()=>{
     })
 
     await liff.init({
-        liffId: "2000149257-ZgKW4k5X", // 從LIFF頁面中拿到的ID
+        liffId: "2000189044-8WzpqeWO", // 從LIFF頁面中拿到的ID
     })
     .then(() => {
 
