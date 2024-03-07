@@ -42,7 +42,7 @@
         </div>
         <div class="mt-2" id="workMoney">
             <label class="text-lg mr-2" v-for="(item, index) in workMoneyData" :key="index">
-                <input type="radio" :value="index+1" name="workMoney" v-model="workMoney">{{ item }}
+                <input type="radio" :value="index" name="workMoney" v-model="workMoney" :checked="index==0" :hidden="index==0">{{ item }}
             </label>
 
             <div class="moneyZone">
