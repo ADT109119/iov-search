@@ -11,7 +11,7 @@
 import { ref } from 'vue';
 
 const trendData = ref([]);
-const api = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSukF2PVJm9QLsJg-9gRoduN13TRYn7vGa8GTFHsAz_hm0BMGAfe6QKjeJy_3baWcCI3sg9Sm-Cflg9/pub?gid=1903002788&single=true&output=tsv";
+const api = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5-NyhMvAqaVN73qV2Qe2wON1jLhOQCTeCa4z2TwSvE2XRIVieqOre9963xqFScoXZWmzHi4sM0b2r/pub?gid=349326398&single=true&output=tsv";
 
 fetch(api).then(res=>res.text()).then((response)=>{
     let data = response.split("\n")
