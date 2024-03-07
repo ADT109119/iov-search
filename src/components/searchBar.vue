@@ -79,4 +79,10 @@ watch(store.state.nowData, (newVal)=>{
     inputText.value = newVal.title;
 })
 
+watch(inputText, (newVal)=>{
+    let nowData = store.getters.getData;
+    nowData.title = newVal
+    store.dispatch('setData', nowData)
+})
+
 </script>
