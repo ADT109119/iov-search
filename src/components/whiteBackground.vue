@@ -2,7 +2,7 @@
     <div class="max-w-4xl w-full mx-auto sm:px-6 lg:px-8">
         <div class="mt-2 mb-4 bg-white overflow-hidden shadow sm:rounded-lg p-6">
             <h2 class="text-2xl leading-7 font-semibold">
-                {{ props.history.title }}
+                搜尋字: {{ props.history.title }}
             </h2>
             <p class="mt-3 text-gray-600">
                 <span  class="areaDisplay">地區:
