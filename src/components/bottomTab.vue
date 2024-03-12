@@ -17,7 +17,7 @@
           <a
             class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg cursor-pointer text-slate-700 bg-inherit"
           >
-            <span class="ml-1 text-gray-600 text-xl font-bold border-gray-300 buttonText">詳細搜尋</span>
+            <span class="ml-1 text-gray-600 text-xl font-bold border-gray-300 buttonText">進階搜尋</span>
           </a>
         </li>
       </ul>
