@@ -1,6 +1,7 @@
 <template>
     <div class="recentSearchList">
         <whiteBackground v-for="(item, index) in store.getters.getHistory" :key="index" :history="item"></whiteBackground>
+        <div class="text-gray-500 text-center text-xl pt-20" v-show="store.getters.getHistory.length == 0">您目前尚未有搜尋紀錄</div>
     </div>
 </template>
 
